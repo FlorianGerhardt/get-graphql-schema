@@ -39,7 +39,8 @@ export function getHeadersFromInput(
 interface Options {
   method?: 'GET' | 'POST' | 'PUT' | 'DELETE'
   headers?: { [key: string]: string }
-  json?: boolean
+  json?: boolean,
+  minify?: boolean
 }
 
 /**
@@ -69,7 +70,7 @@ export async function getRemoteSchema(
     if (options.json) {
       return {
         status: 'ok',
-        schema: JSON.stringify(data, null, 2),
+        schema: options.minify ? JSON.stringify(data) : JSON.stringify(data, null, 2),
       }
     } else {
       const schema = buildClientSchema(data)

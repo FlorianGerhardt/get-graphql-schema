@@ -13,6 +13,7 @@ Fetch and print the GraphQL schema from a GraphQL HTTP endpoint (Outputs schema 
 Options:
   --header, -h    Add a custom header (ex. 'X-API-KEY=ABC123'), can be used multiple times
   --json, -j      Output in JSON format (based on introspection query)
+  --minify, -m    Minify JSON output, requires --json
   --method        Use method (GET,POST, PUT, DELETE)
   --output       Save schema to file.
 `,
@@ -26,6 +27,11 @@ Options:
         type: 'boolean',
         alias: 'j',
         default: false,
+      },
+      minify: {
+        type: 'boolean',
+        alias: 'm',
+        default: false
       },
       method: {
         type: 'string',
@@ -68,6 +74,7 @@ export async function main(cli: meow.Result): Promise<void> {
     method: cli.flags.method,
     headers,
     json: cli.flags.json,
+    minify: cli.flags.minify
   })
 
   if (schema.status === 'err') {

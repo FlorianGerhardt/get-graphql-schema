@@ -22,6 +22,7 @@ npm install -g get-graphql-schema
   Options:
     --header, -h    Add a custom header (ex. 'X-API-KEY=ABC123'), can be used multiple times
     --json, -j      Output in JSON format (based on introspection query)
+    --minify, -m    Minify JSON output, requires --json
     --version, -v   Print version of get-graphql-schema
 
 ```
